@@ -1,36 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { toast } from "sonner";
-
-import {
-  // useCreateProductMutationCache,
-  // useCreateProductMutationInvalidate,
-  useCreateProductMutationOptimistic,
-} from "./use-products";
 
 export function ProductForm() {
   const [productTitle, setProductTitle] = useState("");
 
-  const mutation = useCreateProductMutationOptimistic();
+  // Step 1: Add useMutation to post data
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     if (!productTitle.trim()) return;
 
-    mutation.mutate(
-      { title: productTitle },
-      {
-        onSuccess: () => {
-          setProductTitle("");
-          toast.success("Product posted successfully!");
-        },
-        onError: () => {
-          toast.error("Failed to post product. Please try again.");
-        },
-      }
-    );
+    // Step 2: Call the mutation
   }
 
   return (
@@ -40,13 +22,14 @@ export function ProductForm() {
         onChange={(e) => setProductTitle(e.target.value)}
         placeholder="Add a product..."
         className="flex-1"
-        disabled={mutation.isPending}
+        // Step 3: Disable input and button while posting
       />
       <Button
         type="submit"
-        disabled={!productTitle.trim() || mutation.isPending}
+        disabled={!productTitle.trim()} // Step 4: Disable button while posting
       >
-        {mutation.isPending ? "Posting..." : "Post"}
+        {/* Step 5: Display correct text based on mutation state */}
+        Post
       </Button>
     </form>
   );

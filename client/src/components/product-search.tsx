@@ -2,14 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useDebounce } from "@/hooks/useDebounce";
-import { ProductLoader } from "./product/product-loader";
-import { ErrorComponent } from "./error";
-import { ProductNotFound } from "./product/product-not-found";
-import { ProductList } from "./product/product-list";
 
 export default function ProductSearch() {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+  // Step 1: Add useQuery to fetch data
 
   return (
     <div className="space-y-4">
@@ -35,17 +33,16 @@ export default function ProductSearch() {
           Start typing to search for posts...
         </div>
       )}
-      {isLoading && <ProductLoader />}
 
-      {isError && <ErrorComponent error={error.message} />}
+      {/* Step 2: Handle loading state */}
 
-      {data?.products.length === 0 && !isError && !isLoading && (
-        <ProductNotFound />
-      )}
+      {/* Step 3: Handle error state */}
 
-      {data && data.products.length > 0 && (
-        <ProductList products={data.products} />
-      )}
+      {/* Step 4: Handle not found state */}
+
+      {/* Step 6: handle background refetching state */}
+
+      {/* Step 5: Display product list if data is available */}
     </div>
   );
 }

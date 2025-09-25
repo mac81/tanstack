@@ -1,57 +1,27 @@
-import { Button } from "@/components/ui/button";
-
-import { useProductsQuery } from "./use-products";
 import { ProductForm } from "./product-form";
-import { ErrorComponent } from "../error";
-import { ProductNotFound } from "../product/product-not-found";
-import { ProductList } from "../product/product-list";
 
 export default function InfiniteComments() {
-  const {
-    data,
-    isLoading,
-    isError,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useProductsQuery();
+  // Step 1: Add useInfiniteQuery to fetch data
 
-  const products = data?.pages.flatMap((page) => page.products);
+  // Step 2: Flatten products from all pages
 
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">
-        Products ({data?.pages[0].total ?? "-"})
+        {/* Products ({data?.pages[0].total ?? "-"}) */}
       </h2>
 
       <ProductForm />
 
-      {isLoading && <p className="mb-4 text-blue-500">Loading products...</p>}
+      {/* Step 3: Handle loading state */}
 
-      {isError && <ErrorComponent error={error?.message} />}
+      {/* Step 4: Handle error state */}
 
-      {!isLoading && !isError && products?.length === 0 && <ProductNotFound />}
+      {/* Step 5: Handle not found state */}
 
-      {products && products.length > 0 && (
-        <div>
-          <div className="space-y-3">
-            <ProductList products={products} />
-          </div>
+      {/* Step 7: handle background refetching state */}
 
-          <div className="flex justify-center my-4">
-            {hasNextPage && (
-              <Button
-                onClick={() => fetchNextPage()}
-                disabled={isFetchingNextPage}
-                className="px-4 py-2"
-              >
-                {isFetchingNextPage ? "Loading more..." : "Load More Products"}
-              </Button>
-            )}
-          </div>
-        </div>
-      )}
+      {/* Step 6: Display product list if data is available */}
     </div>
   );
 }

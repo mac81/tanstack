@@ -1,22 +1,9 @@
-import { fetchData } from "@/lib/fetch-utils";
-
-import type { Product } from "@/types";
-import { useQuery } from "@tanstack/react-query";
-import { LoaderIcon } from "lucide-react";
-import { ProductLoader } from "./product/product-loader";
-import { ErrorComponent } from "./error";
-import { ProductNotFound } from "./product/product-not-found";
-import { ProductList } from "./product/product-list";
-
 export default function FetchWithReactQuery({
   category,
 }: {
   category: string;
 }) {
-  const { data, isLoading, isError, error, isFetching } = useQuery({
-    queryKey: ["products", category],
-    queryFn: () => fetchData<Product>(`/api/products/category/${category}`),
-  });
+  // Step 1: Add useQuery to fetch data
 
   return (
     <div className="p-4">
@@ -24,23 +11,15 @@ export default function FetchWithReactQuery({
         {category.charAt(0).toUpperCase() + category.slice(1)} Products
       </h2>
 
-      {isLoading && <ProductLoader />}
+      {/* Step 2: Handle loading state */}
 
-      {isError && <ErrorComponent error={error.message} />}
+      {/* Step 3: Handle error state */}
 
-      {data?.products.length === 0 && !isError && !isLoading && (
-        <ProductNotFound />
-      )}
+      {/* Step 4: Handle not found state */}
 
-      {isFetching && !isLoading && (
-        <div className="mb-4 text-green-500 flex items-center gap-2">
-          Updating products <LoaderIcon />
-        </div>
-      )}
+      {/* Step 6: handle background refetching state */}
 
-      {data && data.products.length > 0 && (
-        <ProductList products={data.products} />
-      )}
+      {/* Step 5: Display product list if data is available */}
     </div>
   );
 }

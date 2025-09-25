@@ -13,7 +13,7 @@ export async function fetchData<T>(url: string): Promise<T> {
   );
 
   // Randomly throw an error (10% chance)
-  if (Math.random() < 0.1) {
+  if (Math.random() < 0) {
     throw new HTTPException(500, { message: "Random simulated error" });
   }
 
@@ -32,6 +32,11 @@ export async function postData<T>(url: string, data: unknown): Promise<T> {
     },
     body: JSON.stringify(data),
   });
+
+  // Randomly throw an error (10% chance)
+  if (Math.random() < 0) {
+    throw new HTTPException(500, { message: "Random simulated error" });
+  }
 
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);

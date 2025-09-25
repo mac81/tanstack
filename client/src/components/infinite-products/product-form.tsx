@@ -3,12 +3,16 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { toast } from "sonner";
 
-import { useCreateProductMutation } from "./use-products";
+import {
+  // useCreateProductMutationCache,
+  // useCreateProductMutationInvalidate,
+  useCreateProductMutationOptimistic,
+} from "./use-products";
 
 export function ProductForm() {
   const [productTitle, setProductTitle] = useState("");
 
-  const mutation = useCreateProductMutation();
+  const mutation = useCreateProductMutationOptimistic();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

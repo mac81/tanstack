@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProblemsWithUseEffectRouteImport } from './routes/problems-with-use-effect'
 import { Route as InfiniteQueryRouteImport } from './routes/infinite-query'
 import { Route as DebouncedSearchRouteImport } from './routes/debounced-search'
+import { Route as CoreConceptsRouteImport } from './routes/core-concepts'
 import { Route as BasicQueryRouteImport } from './routes/basic-query'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const DebouncedSearchRoute = DebouncedSearchRouteImport.update({
   path: '/debounced-search',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CoreConceptsRoute = CoreConceptsRouteImport.update({
+  id: '/core-concepts',
+  path: '/core-concepts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BasicQueryRoute = BasicQueryRouteImport.update({
   id: '/basic-query',
   path: '/basic-query',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/basic-query': typeof BasicQueryRoute
+  '/core-concepts': typeof CoreConceptsRoute
   '/debounced-search': typeof DebouncedSearchRoute
   '/infinite-query': typeof InfiniteQueryRoute
   '/problems-with-use-effect': typeof ProblemsWithUseEffectRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/basic-query': typeof BasicQueryRoute
+  '/core-concepts': typeof CoreConceptsRoute
   '/debounced-search': typeof DebouncedSearchRoute
   '/infinite-query': typeof InfiniteQueryRoute
   '/problems-with-use-effect': typeof ProblemsWithUseEffectRoute
@@ -59,6 +67,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/basic-query': typeof BasicQueryRoute
+  '/core-concepts': typeof CoreConceptsRoute
   '/debounced-search': typeof DebouncedSearchRoute
   '/infinite-query': typeof InfiniteQueryRoute
   '/problems-with-use-effect': typeof ProblemsWithUseEffectRoute
@@ -68,6 +77,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/basic-query'
+    | '/core-concepts'
     | '/debounced-search'
     | '/infinite-query'
     | '/problems-with-use-effect'
@@ -75,6 +85,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/basic-query'
+    | '/core-concepts'
     | '/debounced-search'
     | '/infinite-query'
     | '/problems-with-use-effect'
@@ -82,6 +93,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/basic-query'
+    | '/core-concepts'
     | '/debounced-search'
     | '/infinite-query'
     | '/problems-with-use-effect'
@@ -90,6 +102,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BasicQueryRoute: typeof BasicQueryRoute
+  CoreConceptsRoute: typeof CoreConceptsRoute
   DebouncedSearchRoute: typeof DebouncedSearchRoute
   InfiniteQueryRoute: typeof InfiniteQueryRoute
   ProblemsWithUseEffectRoute: typeof ProblemsWithUseEffectRoute
@@ -118,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DebouncedSearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/core-concepts': {
+      id: '/core-concepts'
+      path: '/core-concepts'
+      fullPath: '/core-concepts'
+      preLoaderRoute: typeof CoreConceptsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/basic-query': {
       id: '/basic-query'
       path: '/basic-query'
@@ -138,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BasicQueryRoute: BasicQueryRoute,
+  CoreConceptsRoute: CoreConceptsRoute,
   DebouncedSearchRoute: DebouncedSearchRoute,
   InfiniteQueryRoute: InfiniteQueryRoute,
   ProblemsWithUseEffectRoute: ProblemsWithUseEffectRoute,

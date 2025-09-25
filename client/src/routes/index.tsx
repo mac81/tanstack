@@ -1,5 +1,5 @@
 import { NavigationCard } from "@/components/navigation-card";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -7,8 +7,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="max-w-7xl mx-auto grid grid-rows-[auto_1fr_auto] items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <header className="flex flex-col items-center mb-12">
+    <div className="max-w-7xl mx-auto grid grid-rows-[auto_1fr_auto] items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 ">
+      <header className="flex flex-col items-center ">
         <h1 className="text-4xl font-bold mb-4">Tanstack Query Tutorial</h1>
         <p className="text-lg text-center max-w-3xl">
           Learn how to use TanStack Tanstack Query effectively with this
@@ -22,6 +22,16 @@ function Index() {
           </a>
         </p>
       </header>
+
+      <Link
+        to="/core-concepts"
+        className="text-center group transition-colors "
+      >
+        Core concepts{" "}
+        <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+          →
+        </span>
+      </Link>
 
       <main className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <NavigationCard

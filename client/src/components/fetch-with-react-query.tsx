@@ -3,6 +3,10 @@ import { fetchData } from "@/lib/fetch-utils";
 import type { Product } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import { LoaderIcon } from "lucide-react";
+import { ProductLoader } from "./product/product-loader";
+import { ErrorComponent } from "./error";
+import { ProductNotFound } from "./product/product-not-found";
+import { ProductList } from "./product/product-list";
 
 export default function FetchWithReactQuery({
   category,
@@ -20,16 +24,12 @@ export default function FetchWithReactQuery({
         {category.charAt(0).toUpperCase() + category.slice(1)} Products
       </h2>
 
-      {isLoading && (
-        <div className="mb-4 text-blue-500">Loading products...</div>
-      )}
+      {isLoading && <ProductLoader />}
 
-      {isError && (
-        <div className="mb-4 text-red-500">Error: {error.message}</div>
-      )}
+      {isError && <ErrorComponent error={error.message} />}
 
       {data?.products.length === 0 && !isError && !isLoading && (
-        <div className="mb-4">No products found for this category.</div>
+        <ProductNotFound />
       )}
 
       {isFetching && !isLoading && (
@@ -39,21 +39,7 @@ export default function FetchWithReactQuery({
       )}
 
       {data && data.products.length > 0 && (
-        <ul className="space-y-4">
-          {data.products.map((product) => (
-            <li key={product.id} className="border p-3 rounded">
-              <h3 className="font-semibold">{product.title}</h3>
-              {product.images && (
-                <img
-                  src={product.images[0]}
-                  alt={product.title}
-                  className="w-20 h-20 object-cover mb-2"
-                />
-              )}
-              <p>{product.description}</p>
-            </li>
-          ))}
-        </ul>
+        <ProductList products={data.products} />
       )}
     </div>
   );

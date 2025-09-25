@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { fetchData } from "@/lib/fetch-utils";
 
 import type { Product, ProductItem } from "@/types";
+import { ProductList } from "./product/product-list";
+import { ProductNotFound } from "./product/product-not-found";
+import { ErrorComponent } from "./error";
+import { ProductLoader } from "./product/product-loader";
 
 export default function FetchWithUseEffect({ category }: { category: string }) {
   const [products, setProducts] = useState<ProductItem[]>([]);
@@ -38,32 +42,14 @@ export default function FetchWithUseEffect({ category }: { category: string }) {
 
       <div>
         {isLoading ? (
-          <div className="mb-4 text-blue-500">Loading products...</div>
+          <ProductLoader />
         ) : (
           <>
-            {error && <div className="mb-4 text-red-500">Error: {error}</div>}
+            {error && <ErrorComponent error={error} />}
 
-            {products.length === 0 && !error && (
-              <div className="mb-4">No products found for this category.</div>
-            )}
+            {products.length === 0 && !error && <ProductNotFound />}
 
-            {products.length > 0 && (
-              <ul className="space-y-4">
-                {products.map((product) => (
-                  <li key={product.id} className="border p-3 rounded">
-                    <h3 className="font-semibold">{product.title}</h3>
-                    {product.images && (
-                      <img
-                        src={product.images[0]}
-                        alt={product.title}
-                        className="w-20 h-20 object-cover mb-2"
-                      />
-                    )}
-                    <p>{product.description}</p>
-                  </li>
-                ))}
-              </ul>
-            )}
+            {products.length > 0 && <ProductList products={products} />}
           </>
         )}
       </div>

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProblemsWithUseEffectRouteImport } from './routes/problems-with-use-effect'
 import { Route as InfiniteQueryRouteImport } from './routes/infinite-query'
+import { Route as DebouncedSearchRouteImport } from './routes/debounced-search'
 import { Route as BasicQueryRouteImport } from './routes/basic-query'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -22,6 +23,11 @@ const ProblemsWithUseEffectRoute = ProblemsWithUseEffectRouteImport.update({
 const InfiniteQueryRoute = InfiniteQueryRouteImport.update({
   id: '/infinite-query',
   path: '/infinite-query',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DebouncedSearchRoute = DebouncedSearchRouteImport.update({
+  id: '/debounced-search',
+  path: '/debounced-search',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BasicQueryRoute = BasicQueryRouteImport.update({
@@ -38,12 +44,14 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/basic-query': typeof BasicQueryRoute
+  '/debounced-search': typeof DebouncedSearchRoute
   '/infinite-query': typeof InfiniteQueryRoute
   '/problems-with-use-effect': typeof ProblemsWithUseEffectRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/basic-query': typeof BasicQueryRoute
+  '/debounced-search': typeof DebouncedSearchRoute
   '/infinite-query': typeof InfiniteQueryRoute
   '/problems-with-use-effect': typeof ProblemsWithUseEffectRoute
 }
@@ -51,6 +59,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/basic-query': typeof BasicQueryRoute
+  '/debounced-search': typeof DebouncedSearchRoute
   '/infinite-query': typeof InfiniteQueryRoute
   '/problems-with-use-effect': typeof ProblemsWithUseEffectRoute
 }
@@ -59,14 +68,21 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/basic-query'
+    | '/debounced-search'
     | '/infinite-query'
     | '/problems-with-use-effect'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/basic-query' | '/infinite-query' | '/problems-with-use-effect'
+  to:
+    | '/'
+    | '/basic-query'
+    | '/debounced-search'
+    | '/infinite-query'
+    | '/problems-with-use-effect'
   id:
     | '__root__'
     | '/'
     | '/basic-query'
+    | '/debounced-search'
     | '/infinite-query'
     | '/problems-with-use-effect'
   fileRoutesById: FileRoutesById
@@ -74,6 +90,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BasicQueryRoute: typeof BasicQueryRoute
+  DebouncedSearchRoute: typeof DebouncedSearchRoute
   InfiniteQueryRoute: typeof InfiniteQueryRoute
   ProblemsWithUseEffectRoute: typeof ProblemsWithUseEffectRoute
 }
@@ -92,6 +109,13 @@ declare module '@tanstack/react-router' {
       path: '/infinite-query'
       fullPath: '/infinite-query'
       preLoaderRoute: typeof InfiniteQueryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/debounced-search': {
+      id: '/debounced-search'
+      path: '/debounced-search'
+      fullPath: '/debounced-search'
+      preLoaderRoute: typeof DebouncedSearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/basic-query': {
@@ -114,6 +138,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BasicQueryRoute: BasicQueryRoute,
+  DebouncedSearchRoute: DebouncedSearchRoute,
   InfiniteQueryRoute: InfiniteQueryRoute,
   ProblemsWithUseEffectRoute: ProblemsWithUseEffectRoute,
 }

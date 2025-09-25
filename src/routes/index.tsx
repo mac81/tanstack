@@ -39,7 +39,7 @@ function Index() {
         <NavigationCard
           title="Debounced Search with React Query"
           description="Learn how to implement a debounced search feature with React Query to optimize data fetching."
-          href="/search-query"
+          href="/debounced-search"
         />
 
         <NavigationCard

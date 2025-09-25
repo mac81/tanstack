@@ -1,9 +1,9 @@
 import FetchWithUseEffect from "@/components/fetch-with-use-effect";
-
 import { Button } from "@/components/ui/button";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ChevronLeftIcon } from "lucide-react";
+import FetchWithUseEffectFixed from "@/components/fetch-with-use-effect-fixed";
+import { BackButton } from "@/components/back-button";
 
 export const Route = createFileRoute("/problems-with-use-effect")({
   component: RouteComponent,
@@ -14,11 +14,7 @@ function RouteComponent() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <Link to="/" className="fixed top-4 left-4 z-50">
-        <Button>
-          <ChevronLeftIcon />
-        </Button>
-      </Link>
+      <BackButton />
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-4">
           The Problems with useEffect for Data Fetching
@@ -71,7 +67,7 @@ function RouteComponent() {
           <div className="bg-green-100 p-3 font-medium border-b">
             Solution: useEffect with Fixes
           </div>
-          {/* <FetchWithUseEffectFixed category={category} /> */}
+          <FetchWithUseEffectFixed category={category} />
         </div>
       </div>
 

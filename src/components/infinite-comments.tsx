@@ -4,7 +4,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchData } from "@/lib/fetch-utils";
 import type { Product } from "@/types";
 
-export default function InfiniteCommentsFinal() {
+export default function InfiniteComments() {
   const limit = 100;
 
   const {

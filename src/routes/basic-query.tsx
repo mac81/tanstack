@@ -1,7 +1,7 @@
-import FetchWithReactQuery from "@/components/fetch-with-react-query-final";
+import { BackButton } from "@/components/back-button";
+import FetchWithReactQuery from "@/components/fetch-with-react-query";
 import { Button } from "@/components/ui/button";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronLeftIcon } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
 export const Route = createFileRoute("/basic-query")({
@@ -13,11 +13,7 @@ function BasicReactQuery() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <Link to="/" className="fixed top-4 left-4 z-50">
-        <Button>
-          <ChevronLeftIcon />
-        </Button>
-      </Link>
+      <BackButton />
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-4">Basic React Query Example</h1>
         <p className="mb-4">

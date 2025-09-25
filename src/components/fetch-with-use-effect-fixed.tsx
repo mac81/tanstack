@@ -4,7 +4,7 @@ import { fetchData } from "@/lib/fetch-utils";
 
 import type { Product, ProductItem } from "@/types";
 
-export default function FetchWithUseEffectFinal({
+export default function FetchWithUseEffectFixed({
   category,
 }: {
   category: string;

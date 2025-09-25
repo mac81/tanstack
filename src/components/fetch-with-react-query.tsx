@@ -3,7 +3,7 @@ import { fetchData } from "@/lib/fetch-utils";
 import type { Product } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 
-export default function FetchWithReactQueryFinal({
+export default function FetchWithReactQuery({
   category,
 }: {
   category: string;

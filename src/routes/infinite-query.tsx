@@ -1,4 +1,5 @@
-import InfiniteCommentsFinal from "@/components/infinite-comments-final";
+import { BackButton } from "@/components/back-button";
+import InfiniteComments from "@/components/infinite-comments";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/infinite-query")({
@@ -8,6 +9,7 @@ export const Route = createFileRoute("/infinite-query")({
 function RouteComponent() {
   return (
     <div className="max-w-4xl mx-auto p-6">
+      <BackButton />
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-4">
           Infinite Queries with React Query
@@ -26,7 +28,7 @@ function RouteComponent() {
 
       <div className="mb-6">
         <div className="border rounded-lg p-4 bg-gray-50">
-          <InfiniteCommentsFinal />
+          <InfiniteComments />
         </div>
       </div>
 

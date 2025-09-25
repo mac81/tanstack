@@ -14,7 +14,7 @@ function Index() {
           Learn how to use TanStack Tanstack Query effectively with this
           tutorial by{" "}
           <a
-            href="https://github.com/mac81"
+            href="https://github.com/mac81/tanstack"
             className="text-[#4daa57]"
             target="_blank"
           >

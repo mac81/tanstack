@@ -1,23 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
-import { fetchData } from "@/lib/fetch-utils";
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-
-import type { Product } from "@/types";
 import { useDebounce } from "@/hooks/useDebounce";
 
 export default function ProductSearch() {
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
-
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["products", "search", debouncedSearchTerm],
-    queryFn: () =>
-      fetchData<Product>(`/api/products/search?q=${debouncedSearchTerm}`),
-    enabled: !!debouncedSearchTerm,
-  });
 
   return (
     <div className="space-y-4">
@@ -43,7 +31,7 @@ export default function ProductSearch() {
           Start typing to search for posts...
         </div>
       )}
-      {isLoading && (
+      {/* {isLoading && (
         <div className="mb-4 text-blue-500">Loading products...</div>
       )}
 
@@ -71,7 +59,7 @@ export default function ProductSearch() {
             </li>
           ))}
         </ul>
-      )}
+      )} */}
     </div>
   );
 }

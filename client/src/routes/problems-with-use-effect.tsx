@@ -2,7 +2,6 @@ import FetchWithUseEffect from "@/components/fetch-with-use-effect";
 import { Button } from "@/components/ui/button";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import FetchWithUseEffectFixed from "@/components/fetch-with-use-effect-fixed";
 import { BackButton } from "@/components/back-button";
 
 export const Route = createFileRoute("/problems-with-use-effect")({
@@ -67,7 +66,7 @@ function RouteComponent() {
           <div className="bg-green-100 p-3 font-medium border-b">
             Solution: useEffect with Fixes
           </div>
-          <FetchWithUseEffectFixed category={category} />
+          {/* <FetchWithUseEffectFixed category={category} /> */}
         </div>
       </div>
 

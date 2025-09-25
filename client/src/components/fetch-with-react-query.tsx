@@ -2,13 +2,14 @@ import { fetchData } from "@/lib/fetch-utils";
 
 import type { Product } from "@/types";
 import { useQuery } from "@tanstack/react-query";
+import { LoaderIcon } from "lucide-react";
 
 export default function FetchWithReactQuery({
   category,
 }: {
   category: string;
 }) {
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error, isFetching } = useQuery({
     queryKey: ["products", category],
     queryFn: () => fetchData<Product>(`/api/products/category/${category}`),
   });
@@ -29,6 +30,12 @@ export default function FetchWithReactQuery({
 
       {data?.products.length === 0 && !isError && !isLoading && (
         <div className="mb-4">No products found for this category.</div>
+      )}
+
+      {isFetching && !isLoading && (
+        <div className="mb-4 text-green-500 flex items-center gap-2">
+          Updating products <LoaderIcon />
+        </div>
       )}
 
       {data && data.products.length > 0 && (

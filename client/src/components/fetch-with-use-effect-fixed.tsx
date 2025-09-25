@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { fetchData } from "@/lib/fetch-utils";
 
 import type { Product, ProductItem } from "@/types";
+import { ProductLoader } from "./product/product-loader";
+import { ErrorComponent } from "./error";
+import { ProductNotFound } from "./product/product-not-found";
+import { ProductList } from "./product/product-list";
 
 export default function FetchWithUseEffectFixed({
   category,
@@ -45,31 +49,15 @@ export default function FetchWithUseEffectFixed({
 
       <div>
         {isLoading ? (
-          <div className="mb-4 text-blue-500">Loading products...</div>
+          <ProductLoader />
         ) : (
           <>
-            {error && <div className="mb-4 text-red-500">Error: {error}</div>}
+            {error && <ErrorComponent error={error} />}
 
-            {products?.length === 0 && !error && (
-              <div className="mb-4">No products found for this category.</div>
-            )}
+            {products?.length === 0 && !error && <ProductNotFound />}
 
             {products && products.length > 0 && (
-              <ul className="space-y-4">
-                {products.map((product) => (
-                  <li key={product.id} className="border p-3 rounded">
-                    <h3 className="font-semibold">{product.title}</h3>
-                    {product.images && (
-                      <img
-                        src={product.images[0]}
-                        alt={product.title}
-                        className="w-20 h-20 object-cover mb-2"
-                      />
-                    )}
-                    <p>{product.description}</p>
-                  </li>
-                ))}
-              </ul>
+              <ProductList products={products} />
             )}
           </>
         )}

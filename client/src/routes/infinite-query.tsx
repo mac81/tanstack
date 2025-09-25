@@ -12,11 +12,11 @@ function RouteComponent() {
       <BackButton />
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-4">
-          Infinite Queries with React Query
+          Infinite Queries with Tanstack Query
         </h1>
         <p className="mb-4">
-          This example demonstrates how to implement infinite loading with React
-          Query&apos;s
+          This example demonstrates how to implement infinite loading with
+          Tanstack Query&apos;s
           <code className="bg-gray-100 px-1 rounded">
             useInfiniteQuery
           </code>{" "}

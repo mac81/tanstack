@@ -15,10 +15,12 @@ function BasicReactQuery() {
     <div className="max-w-4xl mx-auto p-6">
       <BackButton />
       <div className="mb-6">
-        <h1 className="text-3xl font-bold mb-4">Basic React Query Example</h1>
+        <h1 className="text-3xl font-bold mb-4">
+          Basic Tanstack Query Example
+        </h1>
         <p className="mb-4">
-          This example shows how React Query simplifies data fetching compared
-          to using useEffect.
+          This example shows how Tanstack Query simplifies data fetching
+          compared to using useEffect.
         </p>
       </div>
 
@@ -53,14 +55,14 @@ function BasicReactQuery() {
 
         <div className="border rounded-lg overflow-hidden shadow-sm">
           <div className="bg-green-100 p-3 font-medium border-b">
-            React Query Example
+            Tanstack Query Example
           </div>
           <FetchWithReactQuery category={category} />
         </div>
       </div>
 
       <div className="mt-8 space-y-4 bg-gray-50 p-6 rounded-lg">
-        <h2 className="text-2xl font-bold">Key Benefits of React Query</h2>
+        <h2 className="text-2xl font-bold">Key Benefits of Tanstack Query</h2>
         <ul className="list-disc pl-5 space-y-2">
           <li>No need to manage loading, error, or data states manually</li>
           <li>Automatic request cancellation on component unmount</li>

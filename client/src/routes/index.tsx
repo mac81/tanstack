@@ -9,10 +9,10 @@ function Index() {
   return (
     <div className="max-w-7xl mx-auto grid grid-rows-[auto_1fr_auto] items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <header className="flex flex-col items-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">React Query Tutorial</h1>
+        <h1 className="text-4xl font-bold mb-4">Tanstack Query Tutorial</h1>
         <p className="text-lg text-center max-w-3xl">
-          Learn how to use TanStack React Query effectively with this tutorial
-          by{" "}
+          Learn how to use TanStack Tanstack Query effectively with this
+          tutorial by{" "}
           <a
             href="https://github.com/mac81"
             className="text-[#4daa57]"
@@ -31,14 +31,14 @@ function Index() {
         />
 
         <NavigationCard
-          title="Basic React Query"
-          description="Learn how React Query simplifies data fetching with automatic state management and caching."
+          title="Basic Tanstack Query"
+          description="Learn how Tanstack Query simplifies data fetching with automatic state management and caching."
           href="/basic-query"
         />
 
         <NavigationCard
-          title="Debounced Search with React Query"
-          description="Learn how to implement a debounced search feature with React Query to optimize data fetching."
+          title="Debounced Search with Tanstack Query"
+          description="Learn how to implement a debounced search feature with Tanstack Query to optimize data fetching."
           href="/debounced-search"
         />
 
@@ -49,7 +49,7 @@ function Index() {
         />
 
         <NavigationCard
-          title="Mutations with React Query"
+          title="Mutations with Tanstack Query"
           description="Learn how to create, update, and delete data using useMutation with proper error handling."
           href="/infinite-query"
         />
@@ -69,7 +69,7 @@ function Index() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            React Query Docs
+            Tanstack Query Docs
           </a>
           <a
             className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto"

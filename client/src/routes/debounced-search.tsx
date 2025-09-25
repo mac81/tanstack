@@ -11,18 +11,18 @@ function RouteComponent() {
     <div className="max-w-4xl mx-auto p-6">
       <BackButton />
       <h1 className="text-3xl font-bold mb-6">
-        Debounced Search with React Query
+        Debounced Search with Tanstack Query
       </h1>
 
       <div className="mb-8">
         <p className="mb-4">
-          This example demonstrates how to use React Query with debounced input
-          to search for products across all categories. The search input is
-          debounced to prevent excessive API calls while typing.
+          This example demonstrates how to use Tanstack Query with debounced
+          input to search for products across all categories. The search input
+          is debounced to prevent excessive API calls while typing.
         </p>
 
         <p className="mb-4">
-          React Query automatically manages the loading and error states, and
+          Tanstack Query automatically manages the loading and error states, and
           caches the results for each search term to avoid unnecessary requests.
         </p>
       </div>

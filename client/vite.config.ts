@@ -6,6 +6,11 @@ import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    proxy: {
+      "/api": "http://localhost:8787", // Replace 5000 with your Express server port
+    },
+  },
   plugins: [
     tanstackRouter({
       target: "react",

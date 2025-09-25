@@ -10,8 +10,7 @@ export default function FetchWithReactQuery({
 }) {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["products", category],
-    queryFn: () =>
-      fetchData<Product>(`https://dummyjson.com/products/category/${category}`),
+    queryFn: () => fetchData<Product>(`/api/products/category/${category}`),
   });
 
   return (
@@ -37,11 +36,13 @@ export default function FetchWithReactQuery({
           {data.products.map((product) => (
             <li key={product.id} className="border p-3 rounded">
               <h3 className="font-semibold">{product.title}</h3>
-              <img
-                src={product.images[0]}
-                alt={product.title}
-                className="w-20 h-20 object-cover mb-2"
-              />
+              {product.images && (
+                <img
+                  src={product.images[0]}
+                  alt={product.title}
+                  className="w-20 h-20 object-cover mb-2"
+                />
+              )}
               <p>{product.description}</p>
             </li>
           ))}

@@ -1,12 +1,9 @@
 import { Button } from "@/components/ui/button";
 
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { fetchData } from "@/lib/fetch-utils";
-import type { Product } from "@/types";
+import { useProductsQuery } from "./use-products";
+import { ProductForm } from "./product-form";
 
 export default function InfiniteComments() {
-  const limit = 100;
-
   const {
     data,
     isLoading,
@@ -15,16 +12,7 @@ export default function InfiniteComments() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery({
-    queryKey: ["products"],
-    queryFn: ({ pageParam }) =>
-      fetchData<Product>(
-        `https://dummyjson.com/products?skip=${pageParam}&limit=${limit}`
-      ),
-    initialPageParam: 0,
-    getNextPageParam: (lastPage) =>
-      lastPage.limit >= limit ? lastPage.skip + limit : undefined,
-  });
+  } = useProductsQuery();
 
   const products = data?.pages.flatMap((page) => page.products);
 
@@ -34,7 +22,7 @@ export default function InfiniteComments() {
         Products ({data?.pages[0].total ?? "-"})
       </h2>
 
-      {/* <CommentForm /> */}
+      <ProductForm />
 
       {isLoading && <p className="mb-4 text-blue-500">Loading products...</p>}
 
@@ -53,19 +41,21 @@ export default function InfiniteComments() {
           <div className="space-y-3">
             {products.map((product) => (
               <div
-                key={product.id}
+                key={product?.id}
                 className="flex gap-3 p-3 border rounded-lg bg-white"
               >
                 <div className="flex-shrink-0">
                   <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-sm font-medium">
-                    <img src={product.images[0]} alt={product.title} />
+                    {product?.images && (
+                      <img src={product?.images?.[0]} alt={product?.title} />
+                    )}
                   </div>
                 </div>
                 <div className="flex-1">
                   <div className="flex justify-between items-start">
-                    <p className="font-medium">{product.title}</p>
+                    <p className="font-medium">{product?.title}</p>
                   </div>
-                  <p className="text-gray-700 mt-1">{product.description}</p>
+                  <p className="text-gray-700 mt-1">{product?.description}</p>
                 </div>
               </div>
             ))}

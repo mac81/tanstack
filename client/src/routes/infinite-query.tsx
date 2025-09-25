@@ -1,5 +1,5 @@
 import { BackButton } from "@/components/back-button";
-import InfiniteComments from "@/components/infinite-comments";
+import InfiniteComments from "@/components/infinite-products/infinite-products";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/infinite-query")({

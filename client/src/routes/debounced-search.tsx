@@ -1,3 +1,4 @@
+import { BackButton } from "@/components/back-button";
 import ProductSearch from "@/components/product-search";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -8,6 +9,7 @@ export const Route = createFileRoute("/debounced-search")({
 function RouteComponent() {
   return (
     <div className="max-w-4xl mx-auto p-6">
+      <BackButton />
       <h1 className="text-3xl font-bold mb-6">
         Debounced Search with React Query
       </h1>

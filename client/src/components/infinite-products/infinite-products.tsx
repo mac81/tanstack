@@ -5,6 +5,7 @@ import { ProductForm } from "./product-form";
 import { ErrorComponent } from "../error";
 import { ProductNotFound } from "../product/product-not-found";
 import { ProductList } from "../product/product-list";
+import { ProductLoader } from "../product/product-loader";
 
 export default function InfiniteComments() {
   const {
@@ -27,7 +28,7 @@ export default function InfiniteComments() {
 
       <ProductForm />
 
-      {isLoading && <p className="mb-4 text-blue-500">Loading products...</p>}
+      {isLoading && <ProductLoader />}
 
       {isError && <ErrorComponent error={error?.message} />}
 

@@ -4,12 +4,9 @@ import {
   useMutation,
   useQueryClient,
   type InfiniteData,
-  type QueryKey,
 } from "@tanstack/react-query";
 
 import type { Product, ProductItem } from "@/types";
-
-const queryKey: QueryKey = ["products"];
 
 export function useProductsQuery() {
   return useInfiniteQuery({
@@ -37,7 +34,7 @@ export function useCreateProductMutation() {
     onSuccess: async (product) => {
       console.log("Product created:", product);
 
-      queryClient.invalidateQueries({ queryKey });
+      queryClient.invalidateQueries({ queryKey: ["products"] });
     },
   });
 }
@@ -52,15 +49,15 @@ export function useCreateProductMutationOptimistic() {
         newProduct
       );
     },
-    onSuccess: async (product) => {
+    onSuccess: async ({ product }) => {
       console.log("Product created:", product);
 
       // Cancel any outgoing refetches to avoid them overwriting our optimistic update
-      await queryClient.cancelQueries({ queryKey });
+      await queryClient.cancelQueries({ queryKey: ["products"] });
 
       // Update the query cache with the new comment so we don't have to wait for the refetch
       queryClient.setQueryData<InfiniteData<Product, number | undefined>>(
-        queryKey,
+        ["products"],
         (state) => {
           // Add the new product to the first page of results
           const firstPage = state?.pages[0];

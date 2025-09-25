@@ -36,7 +36,7 @@ app.post("/api/products/add", async (c) => {
 
   const data = await postData("https://dummyjson.com/products/add", body);
 
-  return c.json(data);
+  return c.json({ product: data });
 });
 
 export default app;

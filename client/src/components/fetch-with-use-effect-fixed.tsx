@@ -18,6 +18,7 @@ export default function FetchWithUseEffectFixed({
   const [error, setError] = useState<string>();
 
   // Fix 1: Add ignore flag to prevent state updates after unmount
+  // https://react.dev/reference/react/useEffect#fetching-data-with-effects
   useEffect(() => {
     let ignore = false;
 

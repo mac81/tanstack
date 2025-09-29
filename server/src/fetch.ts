@@ -3,9 +3,6 @@ import { HTTPException } from "hono/http-exception";
 export async function fetchData<T>(url: string): Promise<T> {
   const delay = Math.floor(Math.random() * 1500) + 500;
 
-  // const urlWithError =
-  //   Math.random() < 0 ? "https://dummyjson.com/http/500" : url;
-
   const hasQueryParam = url.includes("?");
 
   const response = await fetch(
@@ -13,7 +10,7 @@ export async function fetchData<T>(url: string): Promise<T> {
   );
 
   // Randomly throw an error (10% chance)
-  if (Math.random() < 0) {
+  if (Math.random() < 0.1) {
     throw new HTTPException(500, { message: "Random simulated error" });
   }
 

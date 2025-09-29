@@ -9,10 +9,36 @@ function RouteComponent() {
   return (
     <div className="pt-24 space-y-4  p-6 rounded-lg">
       <BackButton />
-      <h2 className="text-2xl font-bold">Core concepts</h2>
+      <h2 className="text-4xl font-bold">Core concepts</h2>
 
       <div>
-        <h3 className="text-lg font-bold">1. What are side effects?</h3>
+        <h3 className="text-2xl font-bold mb-4">1. Pure functions</h3>
+        <p className="mb-2">In React, a pure function is a function that:</p>
+        <ul className="list-disc pl-5 space-y-2 mb-4">
+          <li>
+            Always returns the same output for the same input (props/state).
+          </li>
+
+          <li>
+            If you give it the same arguments, you always get the same result.
+          </li>
+
+          <li>{`Example: (a, b) => a + b is pure, while (a, b) => a + b + Math.random() is not pure.`}</li>
+        </ul>
+
+        <ul className="list-disc pl-5 space-y-2">
+          <li>
+            Has no side effects. It does not modify variables outside its scope
+            (e.g., no changing global variables, no DOM manipulation, no API
+            calls, no modifying props).
+          </li>
+
+          <li>This makes components predictable and easy to test.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 className="text-2xl font-bold mb-4">1. What are side effects?</h3>
         <p>
           In React, a side effect is any operation that affects something
           outside the scope of the current component function. These are
@@ -52,7 +78,7 @@ function RouteComponent() {
       </div>
 
       <div>
-        <h3 className="text-lg font-bold">2. What are Mutations?</h3>
+        <h3 className="text-2xl font-bold mb-4">2. What are Mutations?</h3>
         <p>
           In React, a mutation refers to directly modifying or changing an
           existing object, array, or other data structure rather than creating a
